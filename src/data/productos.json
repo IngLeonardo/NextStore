@@ -1,0 +1,66 @@
+[
+    {
+        "name": "ASUS",
+        "category": "Portatiles",
+        "description": "Portátil ASUS Zenbook 14 OLED | Intel Core i5 | 16GB de RAM | 512GB SSD de Almacenamiento | Windows 11 | Pantalla OLED 14   Pulgadas | Computador Portatil",
+        "imgUrl": "https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/72742836_1/w=1500,h=1500,fit=pad",
+        "price": 2990000,
+        "id": 1
+    },
+    {
+        "name": "LENOVO",
+        "category": "Portatiles",
+        "description": "Portátil Lenovo | Pantalla Táctil de 15.6 pulgadas | Intel Core i5 Serie H | 8GB RAM | 512GB SSD Almacenamiento | Windows 11 | IdeaPad Slim 3 | Computador Portátil",
+        "imgUrl": "https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/72115408_1/w=1500,h=1500,fit=pad",
+        "price": 1989900,
+        "id": 2
+    },
+    {
+        "name": "HP",
+        "category": "Portatiles",
+        "description": "HP VICTUS INTEL CORE I5-13420H SSD 1TB RAM 40GB RTX 3050 6GB LED 15.6 pulgadas FHD 144Hz",
+        "imgUrl": "https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/124608210_01/w=1500,h=1500,fit=pad",
+        "price": 5299900,
+        "id": 3
+    },
+    {
+        "name": "SAMSUNG",
+        "category": "Monitor",
+        "description": "Monitor Samsung IPS de 24 Full HD Freesync 75Hz HDMI F24T35 - Negro",
+        "imgUrl": "https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/123540181_01/w=1500,h=1500,fit=pad",
+        "price": 849900,
+        "id": 4
+    },
+    {
+        "name": "HP",
+        "category": "Monitor",
+        "description": "Monitor HP V24i G5 | 23.5 pulgadas LED Full HD | Tasa de Refresco 75 HZ",
+        "imgUrl": "https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/72742243_2/w=1500,h=1500,fit=pad",
+        "price": 549900,
+        "id": 5
+    },
+    {
+        "name": "LG",
+        "category": "Monitor",
+        "description": "Monitor LG 21.45 FHD Freesync 100hz 22mr410-b Negro",
+        "imgUrl": "https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/129581994_01/w=1500,h=1500,fit=pad",
+        "price": 1600000,
+        "id": 6
+    },
+    {
+        "name": "HP",
+        "category": "PC-escritorio",
+        "description": "HP AIO 245 G10 RYZEN 3 7320U/RAM 8GB / 256 GB SSD / 23,8 pulgadas/ W11",
+        "imgUrl": "https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/130504661_01/w=1500,h=1500,fit=pad",
+        "price": 1499000,
+        "id": 7
+    },
+    {
+        "name": "JANUS",
+        "category": "PC-escritorio",
+        "description": "COMPUTADOR GAMER RYZEN 5-5600G SSD 512GB M2 PCIE DDR4 16GB RGB",
+        "imgUrl": "https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/126025496_01/w=1500,h=1500,fit=pad",
+        "price": 2049000,
+        "id": 8
+    }
+]

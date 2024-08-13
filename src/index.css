@@ -1,4 +1,16 @@
 span{
-    padding-left: .4em;
-    color: red;
+    background-color: black;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    /* padding-left: .4em; */
+    color: white;
+    border-radius: 50%;
+}
+.price{
+    background-color:  black;
+    color: white;
+    border-radius: 2px;
+    padding: 6px;
 }

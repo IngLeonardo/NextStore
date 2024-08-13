@@ -7,4 +7,4 @@ export const CartWidget = () =>{
             <span>2</span>
         </>
     )
-}   
+}       
