@@ -1,12 +1,11 @@
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import data from '../data/productos.json';
+import { ItemList } from './ItemList';
 
 
 export const ItemListContainer = () =>{
+
     const [item, setItem]= useState([]);
     const [loading , setLoading] = useState(true);
     const { id } = useParams();
@@ -25,35 +24,10 @@ export const ItemListContainer = () =>{
         .finally(() => setLoading(false)); 
     },[id]);
 
-    if(loading) return "Loading..."
 
+    if(loading) return "Loading..."
+    
     return (
-        <Container className='mt-4 d-flex flex-wrap text-center gap-2'>
-            {item.map((producto) => (
-                <Card key={producto.id}  style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={producto.imgUrl} />
-                    <Card.Body>
-                            <Card.Title><h4>{producto.name}</h4></Card.Title>
-                            <Card.Text>
-                                {producto.category}
-                            </Card.Text>
-                            <Card.Text>
-                                ${producto.price.toLocaleString('es-CO')}
-                            </Card.Text>
-                            <Link to={`/item/${producto.id}`}>
-                                <Button variant="primary">Ver más</Button>
-                            </Link>
-                    </Card.Body>
-                </Card>
-            ))} 
-        </Container>
+        <ItemList  producto = {item}/>
     )   
 }
-
-
-
-
-
-
-
-
