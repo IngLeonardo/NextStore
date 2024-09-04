@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import data from '../data/productos.json';
+import {  getFirestore, getDocs,where,query,collection } from "firebase/firestore";
 import { ItemList } from './ItemList';
 
 
@@ -11,23 +11,25 @@ export const ItemListContainer = () =>{
     const { id } = useParams();
 
     useEffect(() => {
-        new Promise((resolve, reject) => setTimeout(() => resolve(data), 2000))
-        .then( response => {
-            if(!id){
-                setItem(response);   
-            }
-            else{
-                const filtered = response.filter((element) => element.category === id);
-                setItem(filtered);
-            }
+        
+        const db = getFirestore();
+        const ref = collection(db , "items");
+
+        getDocs(ref)
+        .then((snapshot) => {
+        setItem(
+            snapshot.docs.map((doc) =>{
+                return { id: doc.id, ...doc.data()}
             })
-        .finally(() => setLoading(false)); 
+        )
+        })
+        .finally(() => setLoading(false))
     },[id]);
 
 
     if(loading) return "Loading..."
     
     return (
-        <ItemList  producto = {item}/>
+        <ItemList  producto = { item }/>
     )   
 }

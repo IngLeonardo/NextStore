@@ -12,11 +12,11 @@ export const Item = ({producto}) => {
     
                 {producto.map((prod) => (
                     <Card key={prod.id}  style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={prod.imgUrl} />
+                        <Card.Img variant="top" src={prod.imageId} />
                         <Card.Body>
-                                <Card.Title><h4>{prod.name}</h4></Card.Title>
+                                <Card.Title><h4>{prod.title}</h4></Card.Title>
                                 <Card.Text>
-                                    {prod.category}
+                                    {prod.categoryId}
                                 </Card.Text>
                                 <Card.Text>
                                     ${prod.price.toLocaleString('es-CO')}
