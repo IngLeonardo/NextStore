@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext,useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import data from '../data/productos.json';
+// import data from '../data/productos.json';
+import {  getFirestore, getDoc, doc } from "firebase/firestore";
 import { ItemDetail } from './ItemDetail';
+
 
 
 export const ItemDetailContainer = () =>{
@@ -9,12 +11,17 @@ export const ItemDetailContainer = () =>{
     const [loading , setLoading] = useState(true);
     const { id } = useParams();
 
+
     useEffect(() => {
-        new Promise((resolve) => setTimeout(() => resolve(data),2000)).then(
-            response => {
-            const finded = response.find((element)=> element.id === Number(id))
-            setItem(finded);
-        }).finally(() => setLoading(false));
+        
+        const db = getFirestore();
+        const refDoc = doc(db, "items", id);
+
+        getDoc(refDoc)
+        .then((snapshot) => {
+        setItem({ ...snapshot.data(), id: snapshot.id });
+        })
+        .finally(() => setLoading(false));
     },[id]);
 
     if(loading) return 'Loading...';
