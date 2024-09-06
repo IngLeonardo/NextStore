@@ -23,8 +23,28 @@ export const Cart = () => {
 
     const total =  items.reduce((acc, act) => acc + act.price * act.quantity,0)
 
+    const sendOrder = () =>{
+        const order = {
+            buyer,
+            items,
+            total
+        };
+        const db = getFirestore();
+        const orderCollection = collection(db, "orders");
 
+        addDoc(orderCollection, order)
+        .then(({id}) =>{
+            if(id){
+                alert("Su orden : "+ id + "ha sido completada!");
+            }
+        })
+        .finally(() => {
+            reset();
+            setBuyer(initialValues);
+        });
+    };
 
+    if(items.length === 0) return " Ir a la pagina de Inicio de la tienda..."
     return ( 
         <Container>
             <button onClick ={ reset }>Vaciar</button>
@@ -56,7 +76,7 @@ export const Cart = () => {
                     <label>Email</label>
                     <input value={buyer.email} name="email" onChange={handleChange} />
                 </div>
-                {/* <button type="button" onClick={sendOrder}>Comprar</button> */}
+                <button type="button" onClick={sendOrder}>Comprar</button>
             </form>
 
         </Container>
