@@ -1,15 +1,17 @@
-import { useContext,useEffect, useState } from 'react';
+import { useEffect,useState,useContext } from 'react';
 import { useParams } from 'react-router-dom';
-// import data from '../data/productos.json';
 import {  getFirestore, getDoc, doc } from "firebase/firestore";
 import { ItemDetail } from './ItemDetail';
+import { CartContext } from "../context/CartContext";
 
 
 
 export const ItemDetailContainer = () =>{
     const [item, setItem]= useState([]);
     const [loading , setLoading] = useState(true);
+    const { addItem }= useContext(CartContext);
     const { id } = useParams();
+
 
 
     useEffect(() => {
@@ -24,10 +26,14 @@ export const ItemDetailContainer = () =>{
         .finally(() => setLoading(false));
     },[id]);
 
+    const onAdd = (quantity ) =>{
+        addItem({ ...item,quantity }); 
+    }
+
     if(loading) return 'Loading...';
     
     return (
-        <ItemDetail producto = { item } /> 
+        <ItemDetail producto = { item } onAdd = { onAdd }/> 
     )   
 }
 

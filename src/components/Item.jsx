@@ -9,7 +9,7 @@ export const Item = ({producto}) => {
         <>
             <h1 className='ms-3 mt-5'>Productos</h1>
             <Container className='mt-4 d-flex flex-wrap text-center gap-2'>
-    
+
                 {producto.map((prod) => (
                     <Card key={prod.id}  style={{ width: '18rem' }}>
                         <Card.Img variant="top" src={prod.imageId} />

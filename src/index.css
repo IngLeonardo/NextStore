@@ -1,4 +1,4 @@
-span{
+.cart{
     background-color: black;
     width: 30px;
     height: 30px;
@@ -7,10 +7,18 @@ span{
     /* padding-left: .4em; */
     color: white;
     border-radius: 50%;
+    margin: 2px;
 }
 .price{
     background-color:  black;
     color: white;
     border-radius: 2px;
     padding: 6px;
+}
+.stock{
+    background-color:  black;
+    color: white;
+    border-radius: 2px;
+    padding: 6px;
+    margin-left: 10px;
 }

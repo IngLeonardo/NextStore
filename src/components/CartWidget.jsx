@@ -1,10 +1,13 @@
 import cart from '../assets/shoppingCart.png'
+import { Link } from "react-router-dom";
 
 export const CartWidget = () =>{
     return(
         <>
-            <img src={cart} height={24}/> 
-            <span>2</span>
+            <Link to="/cart">
+                <img src={cart} height={24}/> 
+            </Link>
+            <span className="cart">2</span>
         </>
     )
 }       

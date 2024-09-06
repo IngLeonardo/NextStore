@@ -18,7 +18,6 @@ export const NavBar = () =>{
                     
                     />
                 </Navbar.Brand>
-                    
                     <Nav className="me-auto">
                     <Nav.Link as={NavLink} to="/">Inicio</Nav.Link>
                     <Nav.Link as={NavLink} to="/category/Portatiles">Portatiles</Nav.Link>
