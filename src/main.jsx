@@ -4,6 +4,9 @@ import App from './App.jsx'
 import { initializeApp } from "firebase/app";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap-icons/font/bootstrap-icons.min.css';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAx0_jsoroYT73iAso-KZinDDoSZOuDprw",
