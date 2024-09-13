@@ -1,68 +1,81 @@
 import { useContext,useState } from "react";
 import { CartContext } from "../context/CartContext";
 import Container from 'react-bootstrap/Container';
-import {  getFirestore,collection,addDoc } from "firebase/firestore";
+// import {  getFirestore,collection,addDoc } from "firebase/firestore";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { FormOrder } from './FormOrder';
-import { Link } from "react-router-dom";
+// import { FormOrder } from './FormOrder';
+import {BrowserRouter, Link } from "react-router-dom";
 
 
-const initialValues = {
-    phone: "",
-    email: "",
-    name: ""
-};
+// const initialValues = {
+//     phone: "",
+//     email: "",
+//     name: ""
+// };
 
 export const Cart = () => {
     const { items,reset,removeItem } = useContext(CartContext);
-    const [buyer, setBuyer] = useState(initialValues);
+    // const [buyer, setBuyer] = useState(initialValues);
 
-    const handleChange = (ev) =>{
-        setBuyer(prev => {
-            return {
-                ...prev,[ev.target.name ]: ev.target.value,
-            };
-        });
-    };
+    // const handleChange = (ev) =>{
+    //     setBuyer(prev => {
+    //         return {
+    //             ...prev,[ev.target.name ]: ev.target.value,
+    //         };
+    //     });
+    // };
 
     const total =  items.reduce((acc, act) => acc + act.price * act.quantity,0)
 
-    const sendOrder = () =>{
-        const order = {
-            buyer,
-            items,
-            total
-        };
-        const db = getFirestore();
-        const orderCollection = collection(db, "orders");
+    // const sendOrder = () =>{
+    //     const order = {
+    //         buyer,
+    //         items,
+    //         total
+    //     };
+    //     const db = getFirestore();
+    //     const orderCollection = collection(db, "orders");
 
-        addDoc(orderCollection, order)
-        .then(({id}) =>{
-            if(id){
-                alert("Su orden : "+ id + "ha sido completada!");
-            }
-        })
-        .finally(() => {
-            reset();
-            setBuyer(initialValues);
-        });
-    };
+    //     addDoc(orderCollection, order)
+    //     .then(({id}) =>{
+    //         if(id){
+    //             alert("Su orden : "+ id + "ha sido completada!");
+    //         }
+    //     })
+    //     .finally(() => {
+    //         reset();
+    //         setBuyer(initialValues);
+    //     });
+    // };
 
-    if(items.length === 0) return " Ir a la pagina de Inicio de la tienda..."
+    // if(items.length === 0) return " Ir a la pagina de Inicio de la tienda..."
 
 
     return (
         <>
-            <Container className='d-flex flex-column justify-content-center align-items-center mb-3'>
-                <Button className="my-4" variant="primary" onClick ={ reset }>Vaciar el carrito</Button>
-                <h2>Total compra : ${total.toLocaleString('es-CO')}</h2>
+            <Container className='d-flex flex-column justify-content-center align-items-center my-3'>
+                <h2 className="py-4">Total compra : ${total.toLocaleString('es-CO')}</h2>
+                <div className="d-flex gap-3">
+                    <Button className="my-4" variant="primary" onClick ={ reset }>Vaciar el carrito</Button>
+                    
+                    {/* {total != 0 &&
+                        <Button className="my-4" variant="primary">Realizar orden de compra</Button>
+                    } */}
+
+                    {total != 0 &&
+                    <Link to={`/formOrder`}>
+                        <Button className="my-4" variant="primary">Realizar orden de compra</Button>
+                    </Link>
+                    }
+
+                </div>
             </Container>
             <Container className="d-flex flex-row gap-2">
                 {
                     items.map((item)=>{
-                        console.log(item.id);
+                        
                         return(
 
                                 <Card key={item.id}  style={{ width: '18rem' }}>
@@ -90,7 +103,7 @@ export const Cart = () => {
                 }
             </Container>
 
-            <FormOrder total = {total}/>
+            {/* <FormOrder total = {total}/> */}
             {/* <Container>
                 <br />
                     <div>Total : ${total.toLocaleString('es-CO')}</div>

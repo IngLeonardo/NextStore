@@ -29,7 +29,7 @@ export const ItemCount = ({ stock,onAdd }) => {
                 <Button className="w-25" variant="primary" onClick={ handleDecrease }> - </Button>
                 <p className="counterNumber align-self-center">{ count }</p>
                 <Button className="w-25" variant="primary" onClick={ handleIncrease }> + </Button>
-                <Button variant="primary" onClick={ handleAdd } className="w-50"> Agregar al carrito </Button>
+                <Button variant="primary" onClick={ handleAdd } className="w-75"> Agregar al carrito </Button>
                 <ToastContainer />
             </div>
         </>

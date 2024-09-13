@@ -1,18 +1,63 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
+import { CartContext } from "../context/CartContext";
+import { useContext,useState } from "react";
+import {  getFirestore,collection,addDoc } from "firebase/firestore";
+import { ItemListContainer } from './ItemListContainer';
 
 
 export const FormOrder = ({total}) => {
+    const initialValues = {
+        phone: "",
+        email: "",
+        name: ""
+    };
+    const { items,reset } = useContext(CartContext);
+    const [buyer, setBuyer] = useState(initialValues);
+
+    const handleChange = (ev) =>{
+        setBuyer(prev => {
+            return {
+                ...prev,[ev.target.name ]: ev.target.value,
+            };
+        });
+    };
+
+     total =  items.reduce((acc, act) => acc + act.price * act.quantity,0)
+
+    const sendOrder = () =>{
+        const order = {
+            buyer,
+            items,
+            total
+        };
+        const db = getFirestore();
+        const orderCollection = collection(db, "orders");
+
+        addDoc(orderCollection, order)
+        .then(({id}) =>{
+            if(id){
+                alert("Su orden : "+ id + "ha sido completada!");
+            }
+        })
+        .finally(() => {
+            reset();
+            setBuyer(initialValues);
+        });
+    };
+
     
-    console.log(total)
+    if(items.length === 0) return <ItemListContainer />
+
+
     
     return (
         <>
         <Container className='d-flex flex-row justify-content-center mt-5'>
             <h2>Total compra : ${total.toLocaleString('es-CO')}</h2>
         </Container>
-        {/* <Container className='d-flex justify-content-center'>
+        <Container className='d-flex justify-content-center'>
         <Form className='w-50 p-4'>
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label>Nombre completo</Form.Label>
@@ -37,35 +82,7 @@ export const FormOrder = ({total}) => {
             </Form.Group>
             <Button variant="primary" type="button" onClick={sendOrder}>Confirmar compra</Button>
         </Form>
-        </Container> */}
+        </Container>
         </>
     )
 }
-
-
-
-
-
-
-
-
-// <Container>
-// <br />
-//     <div>Total : ${total.toLocaleString('es-CO')}</div>
-// <br />
-// <form action="">
-//     <div>
-//         <label>Nombre</label>
-//         <input value={buyer.name} name="name" onChange={handleChange} />
-//     </div>
-//     <div>
-//         <label>Telefono</label>
-//         <input value={buyer.phone} name="phone" onChange={handleChange} />
-//     </div>
-//     <div>
-//         <label>Email</label>
-//         <input value={buyer.email} name="email" onChange={handleChange} />
-//     </div>
-//     <button type="button" onClick={sendOrder}>Comprar</button>
-// </form>
-// </Container>
