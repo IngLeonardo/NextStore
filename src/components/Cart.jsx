@@ -5,6 +5,9 @@ import {  getFirestore,collection,addDoc } from "firebase/firestore";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { FormOrder } from './FormOrder';
+import { Link } from "react-router-dom";
+
 
 const initialValues = {
     phone: "",
@@ -52,14 +55,14 @@ export const Cart = () => {
 
     return (
         <>
-            <Container>
-                <Button className="my-5" variant="primary" onClick ={ reset }>Vaciar el carrito</Button>
+            <Container className='d-flex flex-column justify-content-center align-items-center mb-3'>
+                <Button className="my-4" variant="primary" onClick ={ reset }>Vaciar el carrito</Button>
+                <h2>Total compra : ${total.toLocaleString('es-CO')}</h2>
             </Container>
             <Container className="d-flex flex-row gap-2">
-
                 {
                     items.map((item)=>{
-                        
+                        console.log(item.id);
                         return(
 
                                 <Card key={item.id}  style={{ width: '18rem' }}>
@@ -77,7 +80,7 @@ export const Cart = () => {
                                         </ListGroup>
                                     <Card.Body>
                                         <Card.Link href="#" onClick={() => removeItem(item.id)}><i className="bi bi-trash3"></i> Remover producto</Card.Link>
-                                        <Card.Link href="#">Ver detalles</Card.Link>
+                                        <Card.Link as={Link} to={`/item/${item.id}`}>Ver detalles</Card.Link>
                                     </Card.Body>
                                 </Card>
                             
@@ -86,7 +89,9 @@ export const Cart = () => {
                     })
                 }
             </Container>
-            <Container>
+
+            <FormOrder total = {total}/>
+            {/* <Container>
                 <br />
                     <div>Total : ${total.toLocaleString('es-CO')}</div>
                 <br />
@@ -104,8 +109,8 @@ export const Cart = () => {
                         <input value={buyer.email} name="email" onChange={handleChange} />
                     </div>
                     <button type="button" onClick={sendOrder}>Comprar</button>
-                </form>
-            </Container>
+                </form> 
+            </Container> */}
         </>
     )
 };
