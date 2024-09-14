@@ -24,7 +24,7 @@ export const FormOrder = ({total}) => {
         });
     };
 
-     total =  items.reduce((acc, act) => acc + act.price * act.quantity,0)
+    total =  items.reduce((acc, act) => acc + act.price * act.quantity,0)
 
     const sendOrder = () =>{
         const order = {
@@ -38,7 +38,7 @@ export const FormOrder = ({total}) => {
         addDoc(orderCollection, order)
         .then(({id}) =>{
             if(id){
-                alert("Su orden : "+ id + "ha sido completada!");
+                alert("Su orden : "+ id + " ha sido completada!.Gracias por la compra ");
             }
         })
         .finally(() => {
@@ -47,10 +47,7 @@ export const FormOrder = ({total}) => {
         });
     };
 
-    
     if(items.length === 0) return <ItemListContainer />
-
-
     
     return (
         <>
